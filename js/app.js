@@ -23,6 +23,7 @@ const showProducts = (products) => {
   document.getElementById("all-products").textContent = "";
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
+    const rateInt = Math.floor(product.rating.rate);
     const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
@@ -34,11 +35,41 @@ const showProducts = (products) => {
       <h6>${product.title.length > 44 ? product.title.slice(0, 44)+"..." : product.title}</h6>
       <p>Category: ${product.category}</p>
       <span>
-        <i class="fa fa-star filled"></i>
-        <i class="fa fa-star filled"></i>
-        <i class="fa fa-star filled"></i>
-        <i class="fa fa-star empty"></i>
-        <i class="fa fa-star empty"></i>
+        ${1 <= rateInt ?`
+            <i class="fa fa-star filled"></i>
+        `: product.rating.rate < 1 && product.rating.rate > 0 ?`
+            <i class="fa fa-star-half-empty filled"></i>
+            `:`
+            <i class="fa fa-star empty"></i>`
+        }
+        ${2 <= rateInt ?`
+            <i class="fa fa-star filled"></i>
+        `: product.rating.rate < 2 && product.rating.rate > 1 ?`
+            <i class="fa fa-star-half-empty filled"></i>
+            `:`
+            <i class="fa fa-star empty"></i>`
+        }
+        ${3 <= rateInt ?`
+            <i class="fa fa-star filled"></i>
+        `: product.rating.rate < 3 && product.rating.rate > 2 ?`
+            <i class="fa fa-star-half-empty filled"></i>
+            `:`
+            <i class="fa fa-star empty"></i>`
+        }
+        ${4 <= rateInt ?`
+            <i class="fa fa-star filled"></i>
+        `: product.rating.rate < 4 && product.rating.rate > 3 ?`
+            <i class="fa fa-star-half-empty filled"></i>
+            `:`
+            <i class="fa fa-star empty"></i>`
+        }
+        ${5 <= rateInt ?`
+            <i class="fa fa-star filled"></i>
+        `: product.rating.rate < 5 && product.rating.rate > 4 ?`
+            <i class="fa fa-star-half-empty filled"></i>
+            `:`
+            <i class="fa fa-star empty"></i>`
+        }
         <span class="rate">${product.rating.rate}</span>
         <span>(${product.rating.count} reviews)</span>
       </span>
@@ -62,16 +93,47 @@ const getSingleProduct = (id) => {
 
 const showSingleProduct = (data) => {
   const parent = document.getElementById('parent-div');
+  const rateInt = Math.floor(data.rating.rate);
   parent.innerHTML = `
   <div class="row">
     <div class="col-lg-4 ml-2">
       <img src="${data.image}" class="img-fluid image-h" alt="">
       <div class="mt-3">
-          <i class="fa fa-star filled"></i>
-          <i class="fa fa-star filled"></i>
-          <i class="fa fa-star filled"></i>
-          <i class="fa fa-star empty"></i>
-          <i class="fa fa-star empty"></i>
+          ${1 <= rateInt ?`
+              <i class="fa fa-star filled"></i>
+          `: data.rating.rate < 1 && data.rating.rate > 0 ?`
+              <i class="fa fa-star-half-empty filled"></i>
+              `:`
+              <i class="fa fa-star empty"></i>`
+          }
+          ${2 <= rateInt ?`
+              <i class="fa fa-star filled"></i>
+          `: data.rating.rate < 2 && data.rating.rate > 1 ?`
+              <i class="fa fa-star-half-empty filled"></i>
+              `:`
+              <i class="fa fa-star empty"></i>`
+          }
+          ${3 <= rateInt ?`
+              <i class="fa fa-star filled"></i>
+          `: data.rating.rate < 3 && data.rating.rate > 2 ?`
+              <i class="fa fa-star-half-empty filled"></i>
+              `:`
+              <i class="fa fa-star empty"></i>`
+          }
+          ${4 <= rateInt ?`
+              <i class="fa fa-star filled"></i>
+          `: data.rating.rate < 4 && data.rating.rate > 3 ?`
+              <i class="fa fa-star-half-empty filled"></i>
+              `:`
+              <i class="fa fa-star empty"></i>`
+          }
+          ${5 <= rateInt ?`
+              <i class="fa fa-star filled"></i>
+          `: data.rating.rate < 5 && data.rating.rate > 4 ?`
+              <i class="fa fa-star-half-empty filled"></i>
+              `:`
+              <i class="fa fa-star empty"></i>`
+          }
           <span class="rate">${data.rating.rate}</span>
         </span>
       </div>

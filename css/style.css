@@ -46,11 +46,11 @@ body {
 .cart-main {
   padding-right: 30px;
 }
-.fa-star.filled {
-  color: #ffc014;
+.filled{
+  color: gold;
 }
-.fa-star.empty {
-  color: #AEAEAE;
+.empty{
+  color: #d8d8da;
 }
 .rate{
   margin-left: 5px;
