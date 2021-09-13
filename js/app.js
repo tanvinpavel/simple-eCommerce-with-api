@@ -7,10 +7,10 @@ const loadProducts = () => {
 
 loadProducts();
 
+//search product function
 const searchProduct = () => {
   const searchBtn = document.getElementById('search-key');
   const searchValue = searchBtn.value;
-  console.log(searchValue)
   
    const url = `https://fakestoreapi.com/products/category/${searchValue}`;
    fetch(url)
@@ -52,6 +52,9 @@ const showProducts = (products) => {
 
 // get single product details
 const getSingleProduct = (id) => {
+  // remove previous modal result 
+  document.getElementById('parent-div').textContent = '';
+
   fetch(`https://fakestoreapi.com/products/${id}`)
             .then(res=>res.json())
             .then(json=>showSingleProduct(json));
@@ -59,13 +62,11 @@ const getSingleProduct = (id) => {
 
 const showSingleProduct = (data) => {
   const parent = document.getElementById('parent-div');
-
   parent.innerHTML = `
   <div class="row">
     <div class="col-lg-4 ml-2">
       <img src="${data.image}" class="img-fluid image-h" alt="">
       <div class="mt-3">
-        <span>
           <i class="fa fa-star filled"></i>
           <i class="fa fa-star filled"></i>
           <i class="fa fa-star filled"></i>
@@ -143,3 +144,4 @@ const updateTotal = () => {
     getInputValue("total-tax");
   document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
+
